@@ -1,5 +1,6 @@
 // Global Variables
 const port = 3001
+const trustedDomain = "127.0.0.1"
 
 // Dependencies
 const express = require('express')
@@ -17,7 +18,7 @@ app.use(express.urlencoded({extended:true}));
 // allow all cors
 app.use(cors());
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "127.0.0.1");
+    res.header("Access-Control-Allow-Origin", trustedDomain);
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
   });
@@ -61,13 +62,6 @@ app.use(function(req, res, next) {
                 console.log(req.body)
             })
         })
-
-        // Post / test
-        app.post ('/pp', (req, res, next) => {
-            console.log(req.body)   
-            res.json({msg: 'This is CORS-enabled for an allowed domain.'})
-
-        })
         
         // GET for any Shortlink
         app.get("/:id", (req, res) => {
@@ -87,13 +81,8 @@ app.use(function(req, res, next) {
 
                 res.redirect(row.LongURL)
             })
-               // placeholder
-            })
+        })
         
-
-    
-        
-
 // Listen
 app.listen(port, 'localhost', () => {
     const str = 'listening on http://localhost:'+ port;
