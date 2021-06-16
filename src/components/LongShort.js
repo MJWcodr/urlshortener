@@ -64,7 +64,7 @@ class LongShort extends React.Component {
 
   warn(variable){
       if (variable !== null) {
-        this.warning = <p class="animated slideInDown text-center mx-auto container m-10 mt-3 mb-3 px-10 bg-red max-w-screen-sm shadow-md rounded-3xl mx-10  px-20 py-3 text-black hover:shadow-lg" id="warning">{variable}</p> 
+        this.warning = <div className="animated slideInDown text-center mx-auto container m-10 mt-3 mb-3 px-10 bg-red max-w-screen-sm shadow-md rounded-3xl mx-10  px-20 py-3 text-black hover:shadow-lg" id="warning">{variable}</div> 
       }
       else {
         this.warning = '';
@@ -85,9 +85,9 @@ class LongShort extends React.Component {
   }
   alertSubmission (props) {
     let submission = this.ShortURL
-    this.submission = <p class="animated slideInDown text-center mx-auto container m-5 mb-3 bg-red max-w-screen-sm shadow-md rounded-full mx-10  px-20 py-5 text-black hover:shadow-lg">Dein Link ist: <br/>
-    <p class="font-semibold">mjw.li/{submission}</p>
-    </p>
+    this.submission = <div className="animated slideInDown text-center mx-auto container m-5 mb-3 bg-red max-w-screen-sm shadow-md rounded-full mx-10  px-20 py-5 text-black hover:shadow-lg">Dein Link ist: <br/>
+    <div className="font-semibold">mjw.li/{submission}</div>
+    </div>
     this.forceUpdate();
   }
 
@@ -101,13 +101,32 @@ class LongShort extends React.Component {
       event.preventDefault();
     }
 
-    handleSubmit () {
+    async handleSubmit () {
       if (this.checkErr() !== 1) {
         this.alertSubmission();
+        let data = {
+          "LongURL" : this.LongURL,
+          "ShortURL" :this.ShortURL,
+        };
+        console.log(data.LongURL, data.ShortURL)
+        await fetch('http://127.0.0.1:3001/created', {
+          method: 'POST', // *GET, POST, PUT, DELETE, etc.
+          mode: 'cors', // no-cors, *cors, same-origin
+          credentials: 'omit', // include, *same-origin, omit
+          headers: {
+            'Content-Type': 'application/json'
+            
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          redirect: 'follow', // manual, *follow, error
+          referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+          body: JSON.stringify(data) // body data type must match "Content-Type" header
+        
+        })
       }
-
       
-    }
+      
+      }
     handleURLChange (event) {
       if (event.target.value !== null) {
         this.setState({ LongURL : event.target.value});
@@ -128,14 +147,14 @@ class LongShort extends React.Component {
             action="/created">
               
             <div 
-            class="mx-auto container m-10 px-10 max-w-screen-sm bg-gray shadow-md hover:shadow-lg rounded-3xl mx-10 mt-10 p-5 px-10 py-3 text-grayText"
+            className="mx-auto container m-10 px-10 max-w-screen-sm bg-gray shadow-md hover:shadow-lg rounded-3xl mx-10 mt-10 p-5 px-10 py-3 text-grayText"
             >
               {this.submission}
               {/*<!-- Long Url-->*/}
-                <div class="mx-auto ">
-                    <span class="">Long URL</span> <br/> 
-                    <div class="rounded-lg text-xl">
-                        <input class="w-full form-control bg-transparent placeholder-grayText placeholder-opacity-100" 
+                <div className="mx-auto ">
+                    <span className="">Long URL</span> <br/> 
+                    <div className="rounded-lg text-xl">
+                        <input className="w-full form-control bg-transparent placeholder-grayText placeholder-opacity-100" 
                         autoFocus
                         onBlur={this.handleAction}
                         onSubmit={this.handleSubmit}
@@ -149,12 +168,12 @@ class LongShort extends React.Component {
                     </div>
                 </div>
                 {/*<!-- Short Url -->*/}
-                      <div class="mx-auto pt-7 pb-1">
+                      <div className="mx-auto pt-7 pb-1">
                         <span>Short Url</span><br/>
-                            <div class="w-full rounded-lg text-xl text-grayText">
+                            <div className="w-full rounded-lg text-xl text-grayText">
                               mjw.li/
                               <input 
-                              class="w-20 bg-transparent placeholder-grayText placeholder-opacity-100" 
+                              className="w-20 bg-transparent placeholder-grayText placeholder-opacity-100" 
                               name="ShortURL" 
                               placeholder="hashj5" 
                               id="ShortURL" 
@@ -166,8 +185,8 @@ class LongShort extends React.Component {
                 
                 </div>
                 {/* Button */}
-                  <div class="mx-auto max-w-screen-sm hover:bg-green-500 bg-gray shadow-md hover:shadow-lg rounded-full m-10 mx-20 mt-15 p-5 text-center transition duration-700 ease-in-out disable:bg-black">
-                    <input class="font-semibold text-xl bg-transparent text-white" 
+                  <div className="mx-auto max-w-screen-sm hover:bg-green-500 bg-gray shadow-md hover:shadow-lg rounded-full m-10 mx-20 mt-15 p-5 text-center transition duration-700 ease-in-out disable:bg-black">
+                    <input className="font-semibold text-xl bg-transparent text-white" 
                     type="submit" 
                     value="Submit" 
                     id="submit"
@@ -178,6 +197,5 @@ class LongShort extends React.Component {
         )
   }
 };
-
 
 export default LongShort;
