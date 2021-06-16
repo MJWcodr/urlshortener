@@ -1,3 +1,6 @@
+# user data
+data/url.db
+
 # Logs
 logs
 *.log
