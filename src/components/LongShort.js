@@ -89,8 +89,6 @@ class LongShort extends React.Component {
     <p class="font-semibold">mjw.li/{submission}</p>
     </p>
     this.forceUpdate();
-    console.log(this.ShortURL, 'hallo')
-
   }
 
   // handles and hooks
@@ -120,7 +118,6 @@ class LongShort extends React.Component {
     }
     handleShortURLinput(event) {
       this.ShortURL = event.target.value
-      console.log(event.target.value)
     }
   //render
     render(){
@@ -129,23 +126,24 @@ class LongShort extends React.Component {
             onSubmit={this.preventdefault.bind(this)} 
             method="post" 
             action="/created">
-              {this.submission}
+              
             <div 
             class="mx-auto container m-10 px-10 max-w-screen-sm bg-gray shadow-md hover:shadow-lg rounded-3xl mx-10 mt-10 p-5 px-10 py-3 text-grayText"
             >
+              {this.submission}
               {/*<!-- Long Url-->*/}
                 <div class="mx-auto ">
                     <span class="">Long URL</span> <br/> 
                     <div class="rounded-lg text-xl">
                         <input class="w-full form-control bg-transparent placeholder-grayText placeholder-opacity-100" 
-                        autofocus 
+                        autoFocus
                         onBlur={this.handleAction}
                         onSubmit={this.handleSubmit}
                         onChange={this.handleURLChange}
                         name="LongURL"  
                         placeholder="https://example.com" 
                         id="LongURL" 
-                        autocomplete="off"
+                        autoComplete="off"
                         value={this.LongURL}/>
                         {this.warning}
                     </div>
