@@ -20,7 +20,7 @@ function App() {
         {/* Header*/}
         {header}
         <LongShort/>
-        <div class="text-center container mx-auto font-bold">With ❤️ From Berlin</div>
+        <div class="end-tag">With ❤️ From Berlin</div>
       </div> 
     </div>
        

@@ -15,6 +15,9 @@
     .input-text {
         @apply text-xl bg-transparent placeholder-grayText placeholder-opacity-100
     }
+    .end-tag {
+        @apply text-center container mx-auto font-bold text-white
+    }
 }
 
 
