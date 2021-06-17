@@ -1,8 +1,7 @@
 import React from 'react';
 
 import './App.css';
-import './css/index.css'
-import './assets/tailwind.css'
+import './css/tailwind.css'
 
 // Components
 import LongShort from './components/LongShort/LongShort';
