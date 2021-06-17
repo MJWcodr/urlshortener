@@ -1,17 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 
 // React components
-    import App from './App'; 
+    import App from './Long-App'; 
 
 // Resources
-import './index.css';
+import './css/index.css';
 import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App/>
-  </React.StrictMode>,
+// Routing
+const routes = (
+  <Router>
+    <Route exact path="/shorturls" component={App}></Route>
+  </Router>
+);
+
+ReactDOM.render(routes,
   document.getElementById('root')
 );
 
