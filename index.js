@@ -1,12 +1,17 @@
 // Global Variables
 const port = 3001
 const trustedDomain = "127.0.0.1"
+    // data directory
+    const _datadir = './data/'
+
 
 // Dependencies
 const express = require('express')
 const path = require('path');
 const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors')
+const fs = require('fs');
+const { func } = require('assert-plus');
 
 const app = express();
 
@@ -15,7 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 
-// allow all cors
+// manage api access
 app.use(cors());
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", trustedDomain);
@@ -25,6 +30,15 @@ app.use(function(req, res, next) {
 
 // Database
     // Connect DB
+    try {
+        if (!fs.existsSync(_datadir)){
+            fs.mkdirSync(_datadir)
+        }
+    }
+    catch (err){
+        console.log(err)
+    }
+
     const db_name = path.join(__dirname, "data", "url.db");
     const db = new sqlite3.Database(db_name, err => {
     if (err) {
