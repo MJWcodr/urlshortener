@@ -63,10 +63,7 @@ app.use(function(req, res, next) {
 
 
        // /shorturls
-        // GET
-        app.get('/shorturls', (req,res) => {
-        res.render('shorturls')
-        }) 
+        
         // Post /created
         app.post ('/created', (req, res, next) => {
             var sql = "INSERT INTO URL_table (LongURL, ShortURL) VALUES (?,?)"
