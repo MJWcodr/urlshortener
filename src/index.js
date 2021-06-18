@@ -11,7 +11,7 @@ import reportWebVitals from './reportWebVitals';
 // Routing
 const routes = (
   <Router>
-    <Route exact path="/shorturls" component={App}></Route>
+    <Route path="/" component={App}></Route>
   </Router>
 );
 
