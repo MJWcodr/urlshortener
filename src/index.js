@@ -15,7 +15,7 @@ const routes = (
   </Router>
 );
 
-ReactDOM.render(routes,
+ReactDOM.render(<App/>,
   document.getElementById('root')
 );
 
