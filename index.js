@@ -1,5 +1,5 @@
 // Global Variables
-const port = 3001
+const port = 3000
 const trustedDomain = "127.0.0.1"
     // data directory
     const _datadir = './data/'
