@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Route, BrowserRouter as Router } from 'react-router-dom'
 
 // React components
-    import App from './Long-App'; 
+    import LongApp from './components/LongShort/Long-App'; 
 
 // Resources
 import reportWebVitals from './reportWebVitals';
@@ -11,7 +11,9 @@ import reportWebVitals from './reportWebVitals';
 // Routing
 const routes = (
   <Router>
-    <Route path="/shorturls" component={App}></Route>
+    <Route path="/shorturl" component={LongApp}></Route>
+    <Route path="/shorturls" component={LongApp}></Route>
+    
   </Router>
 );
 

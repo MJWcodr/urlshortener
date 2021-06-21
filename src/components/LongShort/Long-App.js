@@ -1,9 +1,9 @@
+import '../../css/tailwind.css';
 import React from 'react';
-
-import './css/tailwind.css'
-
 // Components
-import LongShort from './components/LongShort/LongShort';
+import LongShort from './LongShort';
+
+
 
 
 // header
