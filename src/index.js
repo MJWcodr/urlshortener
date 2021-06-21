@@ -10,10 +10,8 @@ import reportWebVitals from './reportWebVitals';
 
 // Routing
 const routes = (
-  <Router>
-    <Route path="/shorturl" component={LongApp}></Route>
-    <Route path="/shorturls" component={LongApp}></Route>
-    
+  <Router basename="/shorturls">
+    <Route path={`${process.env.PUBLIC_URL}/`} component={LongApp} />
   </Router>
 );
 
