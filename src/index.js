@@ -4,14 +4,15 @@ import { Route, BrowserRouter as Router } from 'react-router-dom'
 
 // React components
     import LongApp from './components/LongShort/Long-App'; 
-
+    import linktree from './components/linktree/linktree';
 // Resources
 import reportWebVitals from './reportWebVitals';
 
 // Routing
 const routes = (
-  <Router basename="/shorturls">
-    <Route path={`${process.env.PUBLIC_URL}/`} component={LongApp} />
+  <Router basename="/">
+    <Route path={`${process.env.PUBLIC_URL}/shorturls`} component={LongApp} />
+    <Route path={`${process.env.PUBLIC_URL}/link`} component={linktree} />
   </Router>
 );
 

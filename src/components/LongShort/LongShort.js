@@ -192,9 +192,9 @@ class LongShort extends React.Component {
                     id="submit"/>
                   </div>
             </form>
-            
         )
   }
 };
 
 export default LongShort;
+
