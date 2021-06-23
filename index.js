@@ -62,8 +62,11 @@ app.use(function(req, res, next) {
       });
 
 
-       // /shorturls
-        
+      // host react
+       // /shorsparse-checkout was introduced in Git version 2.25. If you get see an error "git: 'sparse-checkout' is not a git command" then you probably need to update. You can use git --version to see what version you're on.turls
+        app.get("/", (req, res) => {
+            res.sendFile(path.join(__dirname, 'build/index.html'));
+        })
         // Post /created
         app.post ('/created', (req, res, next) => {
             var sql = "INSERT INTO URL_table (LongURL, ShortURL) VALUES (?,?)"
