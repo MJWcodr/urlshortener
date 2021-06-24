@@ -1,32 +1,19 @@
-// Global Variables
+// Variables
+const _datadir = './data/'
 const port = 3000
-const trustedDomain = "127.0.0.1"
-    // data directory
-    const _datadir = './data/'
-
+const activeSubdomains = ['link', 'shorturls','/']
 
 // Dependencies
-const express = require('express')
-const path = require('path');
-const sqlite3 = require('sqlite3').verbose();
-const cors = require('cors')
-const fs = require('fs');
-const { func } = require('assert-plus');
-
+const express = require('express');
 const app = express();
+const path = require('path');app.use(express.static(path.join(__dirname, 'build')));
+const sqlite3 = require('sqlite3').verbose();
+const fs = require('fs')
+const favicon = require('express-favicon')
 
-// middleware
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-
-
-// manage api access
-app.use(cors());
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", trustedDomain);
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  });
+app.use(favicon(path.join(__dirname, 'favicon.png')));
 
 // Database
     // Connect DB
@@ -62,43 +49,45 @@ app.use(function(req, res, next) {
       });
 
 
-      // host react
-       // /shorsparse-checkout was introduced in Git version 2.25. If you get see an error "git: 'sparse-checkout' is not a git command" then you probably need to update. You can use git --version to see what version you're on.turls
-        app.get("/", (req, res) => {
-            res.sendFile(path.join(__dirname, 'build/index.html'));
-        })
-        // Post /created
-        app.post ('/created', (req, res, next) => {
-            var sql = "INSERT INTO URL_table (LongURL, ShortURL) VALUES (?,?)"
-            const URL = [req.body.LongURL, req.body.ShortURL]
-            db.run(sql, URL, err => {
-                res.sendStatus(200)
-                console.log(req.body)
-            })
-        })
-        
-        // GET for any Shortlink
-        app.get("/:id", (req, res) => {
-            const id = req.params.id;
-
-            var sql = "SELECT LongURL, ShortURL FROM URL_table WHERE ShortURL = ?"
+// Shorturl Routing and general responses
+app.get('/:id', (req,res) => {
+    const id = req.params.id;
+    
+    var sql = "SELECT LongURL, ShortURL FROM URL_table WHERE ShortURL = ?"
+    db.get(sql, id, (err, row) => {
+        if(err){
+            throw err
+        }
+        if(row == null){
+            if(activeSubdomains.includes(id)){
+                res.sendFile(path.join(__dirname, 'build/index.html'));
+                return
+            }
+            else{
+                app.use(express.static(path.join(__dirname, 'errors')));
+                res.sendFile(path.join(__dirname, 'errors/404.html'));
+                
+            }
             
-            db.get(sql, id, (err, row) => {
-                if(err){
-                    throw err
-                }
-                if(row == null){
-                    console.log("row is undefined or null")
-                    res.redirect('/')
-                    return
-                }
+        }
+        else {
+            res.redirect(row.LongURL)
+        }
+    })
+});
 
-                res.redirect(row.LongURL)
-            })
-        })
-        
+      
+// Post /created
+app.post ('/created', (req, res, next) => {
+    var sql = "INSERT INTO URL_table (LongURL, ShortURL) VALUES (?,?)"
+    const URL = [req.body.LongURL, req.body.ShortURL]
+    db.run(sql, URL, err => {
+        res.sendStatus(200)
+        console.log(req.body)
+    })
+})
+
 // Listen
-app.listen(port, 'localhost', () => {
-    const str = 'listening on http://localhost:'+ port;
-    console.log(str)
+app.listen(port, () => {
+ console.log('Listening on port', port);
 });
