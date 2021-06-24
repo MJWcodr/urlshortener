@@ -11,8 +11,8 @@ import reportWebVitals from './reportWebVitals';
 // Routing
 const routes = (
   <Router basename="/">
-    <Route path={`${process.env.PUBLIC_URL}/shorturls`} component={LongApp} />
-    <Route path={`${process.env.PUBLIC_URL}/link`} component={linktree} />
+    <Route exact path='/shorturls' component={LongApp} />
+    <Route exact path='/' component={linktree} />
   </Router>
 );
 

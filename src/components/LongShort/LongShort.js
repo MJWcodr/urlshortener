@@ -107,7 +107,7 @@ class LongShort extends React.Component {
           "ShortURL" :this.ShortURL,
         };
         console.log(data.LongURL, data.ShortURL)
-        await fetch('http://127.0.0.1:3001/created', {
+        await fetch('/created', {
           method: 'POST', // *GET, POST, PUT, DELETE, etc.
           mode: 'cors', // no-cors, *cors, same-origin
           credentials: 'omit', // include, *same-origin, omit
