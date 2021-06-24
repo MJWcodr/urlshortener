@@ -11,6 +11,7 @@ fontFamily['sans'] = [
 ];
 
 module.exports = {
+  purge: false,
   theme: {
     screens: {
       sm: '480px',

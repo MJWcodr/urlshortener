@@ -44,9 +44,12 @@ class Tous extends React.Component {
         </div>
         {/*<!-- Main -->*/}
         <div>
-            <div class="btn-submit font-semibold text-xl text-white">
-                <a href="https://mjwcodr.de">Website</a>
+            <div>
+                <a href="https://mjwcodr.de">
+                    <div className="btn-submit font-semibold text-xl text-white">Website</div>
+                </a>
             </div>
+            
 
             <div>
                 <a href="https://waechter-wuensch.de">
@@ -56,9 +59,12 @@ class Tous extends React.Component {
                 </a>
             </div>
             
-            <div class="btn-submit font-semibold text-xl text-white">
-                <a href="/shorturls">URL-Shortener</a>
+            <div>
+                <a href="/shorturls">
+                    <div class="btn-submit font-semibold text-xl text-white">URL-Shortener</div>
+                </a>
             </div>
+            
         </div>
         
         </section>

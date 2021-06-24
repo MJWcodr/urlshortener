@@ -12,7 +12,7 @@ import './stylesheet(index).css'
     function linktree() {  
         return (   
         <div className="h-screen font-sans bg-black">
-            <div class="h-screen pt-20 p-5 text-white">
+            <div class="h-screen p-5 text-white">
                 <Tous/>
                 <div class="end-tag">With ❤️ From Berlin</div>
             </div>  
@@ -20,6 +20,4 @@ import './stylesheet(index).css'
         );
     }
   
-
-      
   export default linktree;
