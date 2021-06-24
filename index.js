@@ -10,10 +10,12 @@ const path = require('path');app.use(express.static(path.join(__dirname, 'build'
 const sqlite3 = require('sqlite3').verbose();
 const fs = require('fs')
 const favicon = require('express-favicon')
+const cors = require('cors')
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(favicon(path.join(__dirname, 'favicon.png')));
+
 
 // Database
     // Connect DB
