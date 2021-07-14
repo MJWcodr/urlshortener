@@ -138,6 +138,8 @@ class LongShort extends React.Component {
     handleShortURLinput(event) {
       this.ShortURL = event.target.value
     }
+    componentDidMount() {
+      document.title = "Url Shortener";  }
   //render
     render(){
       return (
