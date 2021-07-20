@@ -1,0 +1,13 @@
+[Unit]
+Description=start-urlshortener
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+ExecStart="/srv/www/urlshortener-backend/start.sh"
+Restart=on-failure
+RestartSec=30
+User=matthias
+
+[Install]
+WantedBy=multi-user.target
