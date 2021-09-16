@@ -1,3 +1,6 @@
 [submodule "urlshortener-frontend"]
-	path = urlshortener-frontend
-	url = https://github.com/MJWcodr/urlshortener-frontend
+	path = frontend
+	url = git@github.com:MJWcodr/urlshortener-frontend.git
+[submodule "frontend"]
+	path = frontend
+	url = git@github.com:MJWcodr/urlshortener-frontend.git
