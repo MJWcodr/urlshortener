@@ -1,6 +1,12 @@
 # user data
 data/url.db
 
+# builds
+frontend
+# start command
+start.sh
+
+
 # Logs
 logs
 *.log
