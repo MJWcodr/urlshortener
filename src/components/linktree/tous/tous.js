@@ -52,11 +52,7 @@ class Tous extends React.Component {
             
 
             <div>
-                <a href="https://waechter-wuensch.de">
-                    <div className="btn-submit font-semibold text-xl text-white">
-                        Wächter-Wünsch
-                    </div>
-                </a>
+
             </div>
             
             <div>
