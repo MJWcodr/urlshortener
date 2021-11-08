@@ -103,7 +103,7 @@ app.post('/created', (req, res, next) => {
             }
         }
         else {
-            res.send('site reachable at ' + Hostname + ShortURL)
+            res.send(Hostname + ShortURL).status(200)
         }
     })
 })
