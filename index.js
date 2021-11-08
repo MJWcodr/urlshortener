@@ -54,8 +54,6 @@ for (i = -1; i++; i > create.length) {
             return console.error(err.message);
         }
     });
-    console.log(create[i])
-    console.log(i)
 }
 
 
