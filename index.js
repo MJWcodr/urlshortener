@@ -88,7 +88,7 @@ app.post('/created', (req, res, next) => {
     let LongURL = req.body.LongURL
 
     if (ShortURL == undefined || ShortURL == "") {
-        ShortURL = stringToHash(LongURL)
+        ShortURL = stringToHash(LongURL + Math.random())
     }
 
     let URL = [LongURL, ShortURL]
