@@ -23,3 +23,24 @@
         width: $buttonsize;
     }
 }
+
+.Title-medium {
+    text-align: center;
+    font-family: $Open-Sans-Bold;
+    margin-top: 100px;
+    font-size: $font-title-sm;
+}
+
+.Title-medium .light {
+    color: $white;
+}
+
+
+@media screen and (min-width: $phone) {
+    .Title-medium {
+        text-align: center;
+        font-family: $Open-Sans-Bold;
+        margin-top: 100px;
+        font-size: $font-title-md;
+    } 
+}

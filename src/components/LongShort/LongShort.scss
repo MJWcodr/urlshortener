@@ -4,11 +4,13 @@ input {
     all: unset;
 }
 ::placeholder {
-    color: $gray-600;
+    color: $gray-500;
 }
 
 
 .URL-Form {
+
+    $form-width: clamp(100px, 80%, 500px);
     display: flex;
     flex-direction: column;
     justify-items: center;
@@ -19,30 +21,47 @@ input {
 
     .URLFormWoSubmit {
         background-color: $gray;
-        padding: 1.5*$spacing-lg;
+        
+        padding: $spacing-lg;
         padding-right: 1.5*$spacing-lg;
         padding-left: 1.5*$spacing-lg;
-    
-        width: clamp(200px, 60%, 600px);
+
+        width: $form-width;
         border-radius: $border-lg;
     
         transition: $transition;
         box-shadow: $shadow-sm;
         animation: slide-up 0.3s ease;
         .InputGroup {
-            padding-top: $spacing-lg;
-            padding-bottom: $spacing-lg;
-                        
+            padding-top: $spacing-md;
+            padding-bottom: $spacing-md;
+            font-size: $font-lg;
 
+            .InputSubGroup {
+                display: flex;
+                width: 100%;
+
+            }
             .InputDescription {
                 font-family: $Open-Sans-SemiBold;
-                font-size: $font-lg;
+                font-size: $font-md;
                 color: $gray-600;
             }
-            .InputField{
+            .InputField {
                 font-size: $font-lg;
                 opacity: 1;
+                color: $gray-200;
+                width: 100%;
             }
+            .InputField.Active {
+                color: $gray-200;
+                flex-shrink: 0;
+                width: auto;
+            }
+            .InputField.Inactive {
+                color:$gray-600;
+                width: auto;
+        }
         }
     }
 
@@ -63,7 +82,7 @@ input {
         background-color: $gray;
         padding: 1.5*$spacing-lg;
     
-        width: clamp(200px, 60%, 600px);
+        width: $form-width;
         border-radius: $border-full;
         transition: $transition;
 
@@ -97,4 +116,16 @@ input {
     }
 }
 
-
+@media screen and (min-width: $phone) {
+    .URL-Form{
+        .URLFormWoSubmit {
+            padding-right: 2*$spacing-lg;
+            padding-left: 2*$spacing-lg;
+        } 
+        .btn-submit {
+            padding: 2*$spacing-lg;
+            padding-top: 1.5*$spacing-lg;
+            padding-bottom: 1.5*$spacing-lg;
+        }
+    }
+}

@@ -2,17 +2,17 @@ import React from 'react';
 // css
 import './LongShort.scss'
 
-
 // LongShort
 class LongShort extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      ShortURL: '',
       LongURL: '',
+      InputFieldState: 'InputField Inactive'
     };
     this.warning = '';
     this.notSubmitable = '';
-    this.LongURL = '';
 
     // handle stuff + binding
     this.handleAction = this.handleAction.bind(this);
@@ -25,11 +25,19 @@ class LongShort extends React.Component {
 
   // functions
   autoShortURL(string) {
-
     if (this.isValidUrl(string)) {
-      this.ShortURL = this.stringToHash(string);
-    }
-    else {
+      this.setState({
+        ShortURL: this.stringToHash(string)
+      })
+      if (string.length === 0) {
+        this.setState({
+          InputFieldState: 'InputField Inactive'
+        })
+      } else {
+        this.setState({
+          InputFieldState: 'InputField Active'
+        })
+      }
     }
   };
 
@@ -64,7 +72,7 @@ class LongShort extends React.Component {
   };
 
   warn(variable) {
-    if (variable !== null) {
+    if (variable === 0) {
       this.warning = <div className="btn-alert" id="warning">{variable}</div>
     }
     else {
@@ -74,7 +82,7 @@ class LongShort extends React.Component {
 
 
   checkErr() {
-    if (this.isValidUrl(this.LongURL)) {
+    if (this.isValidUrl(this.state.LongURL)) {
       this.warn(null);
     }
     else {
@@ -85,9 +93,14 @@ class LongShort extends React.Component {
 
   }
   alertSubmission(props) {
-    let submission = this.ShortURL
+    let submission = this.state.ShortURL
     this.submission = <div className="btn-alert">Dein Link ist: <br />
-      <div className="font-semibold">mjw.li/{submission}</div>
+      <div className="font-semibold">
+        <span className="dot-typing">
+          mjw.li/{submission}
+        </span>
+      </div>
+      <div className="dot-typing"></div>
     </div>
     this.forceUpdate();
   }
@@ -106,8 +119,8 @@ class LongShort extends React.Component {
     if (this.checkErr() !== 1) {
       this.alertSubmission();
       let data = {
-        "LongURL": this.LongURL,
-        "ShortURL": this.ShortURL,
+        "LongURL": this.state.LongURL,
+        "ShortURL": this.state.ShortURL,
       };
       console.log(data.LongURL, data.ShortURL)
       await fetch('/created', {
@@ -124,8 +137,6 @@ class LongShort extends React.Component {
         body: JSON.stringify(data) // body data type must match "Content-Type" header
 
       });
-      this.ShortURL = ''
-      this.LongURL = ''
     }
 
 
@@ -133,13 +144,20 @@ class LongShort extends React.Component {
   handleURLChange(event) {
     if (event.target.value !== null) {
       this.setState({ LongURL: event.target.value });
-      this.LongURL = event.target.value;
       this.autoShortURL(event.target.value);
       console.log(event.target.value);
     }
   }
   handleShortURLinput(event) {
-    this.ShortURL = event.target.value
+    if (event.target.value.length === 0) {
+      this.setState({
+        InputFieldState: 'InputField Inactive'
+      })
+    }
+    else {
+      this.setState({ InputFieldState: 'InputField Active' })
+    }
+    this.setState({ ShortURL: event.target.value })
   }
   componentDidMount() {
     document.title = "URL Shortener";
@@ -154,7 +172,7 @@ class LongShort extends React.Component {
           {this.submission}
           {/*<!-- Long Url-->*/}
           <div className="InputGroup">
-            <span className="InputDescription">Long URL</span><br/>
+            <span className="InputDescription">Long URL</span><br />
             <div>
               <input
                 className="InputField"
@@ -173,16 +191,16 @@ class LongShort extends React.Component {
           {/*<!-- Short Url -->*/}
           <div className="InputGroup">
             <span className="InputDescription">Short URL</span><br />
-            <div>
-              <span className="InputField">mjw.li/</span> 
+            <div className="InputSubGroup">
+              <span className={this.state.InputFieldState}>mjw.li/</span>
               <input
+                contentEditable
                 className="InputField"
                 name="ShortURL"
                 placeholder="hashj5"
                 id="ShortURL"
                 onChange={this.handleShortURLinput}
-                defaultValue={this.ShortURL} />
-
+                defaultValue={this.state.ShortURL}/>
             </div>
           </div>
 
@@ -195,7 +213,9 @@ class LongShort extends React.Component {
             value="Submit"
             id="submit" />
         </div>
+        <span>
 
+        </span>
       </form>
     )
   }
