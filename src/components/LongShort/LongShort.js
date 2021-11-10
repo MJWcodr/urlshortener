@@ -190,7 +190,7 @@ class LongShort extends React.Component {
         {/* Button */}
 
         <div onClick={this.handleSubmit} className="btn-submit">
-          <input className=""
+          <input
             type="submit"
             value="Submit"
             id="submit" />

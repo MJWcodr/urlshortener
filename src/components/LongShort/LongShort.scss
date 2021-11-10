@@ -63,6 +63,9 @@ input {
         width: clamp(200px, 60%, 600px);
         border-radius: $border-full;
         transition: $transition;
+
+        font-family: $Open-Sans-SemiBold;
+        font-size: $font-lg;
     }
     .btn-alert {
         background-color: $secondary;
