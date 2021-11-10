@@ -10,7 +10,7 @@ function linktree() {
         <div>
             <div className="LinkTree">
                 <section>
-                    <img src={profilepic} alt="user icon" className="profile-picture" />
+                    <img width="150px" height="150px" src={profilepic} alt="user icon" className="profile-picture" />
                     <div className="profile-name">
                         <p className="profile-name-text">@mjwcodr</p>
                     </div>
