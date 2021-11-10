@@ -1,2 +1,25 @@
 @import '../../styles/index.scss';
 
+.BackButtonContainer {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    margin-top: 2*$spacing-lg;
+    animation: slide-up 0.3s ease;
+        
+}
+
+.BackButton {
+    background: none;
+    border: none;
+    color: #888888;
+    cursor: pointer;
+    transition: $transition;
+
+    svg {
+        $buttonsize: 50px;
+        height: $buttonsize;
+        width: $buttonsize;
+    }
+}

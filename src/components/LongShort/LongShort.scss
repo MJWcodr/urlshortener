@@ -15,18 +15,20 @@ input {
     align-items: center;
 
     font-family: $Open-Sans;
+    
 
     .URLFormWoSubmit {
         background-color: $gray;
         padding: 1.5*$spacing-lg;
-        padding-right: 2*$spacing-lg;
-        padding-left: 2*$spacing-lg;
+        padding-right: 1.5*$spacing-lg;
+        padding-left: 1.5*$spacing-lg;
     
         width: clamp(200px, 60%, 600px);
         border-radius: $border-lg;
     
         transition: $transition;
         box-shadow: $shadow-sm;
+        animation: slide-up 0.3s ease;
         .InputGroup {
             padding-top: $spacing-lg;
             padding-bottom: $spacing-lg;
@@ -46,6 +48,7 @@ input {
 
     .URLFormWoSubmit:hover {
         box-shadow: $shadow-md;
+        
     }
 
     .btn-submit {
@@ -56,9 +59,9 @@ input {
         align-items: center;
         
         
-        margin-top: 2*$spacing-lg;
+        margin-top: 1.5*$spacing-lg;
         background-color: $gray;
-        padding: 2*$spacing-lg;
+        padding: 1.5*$spacing-lg;
     
         width: clamp(200px, 60%, 600px);
         border-radius: $border-full;
@@ -66,11 +69,26 @@ input {
 
         font-family: $Open-Sans-SemiBold;
         font-size: $font-lg;
+
+        animation: slide-up 0.3s ease;
     }
     .btn-alert {
         background-color: $secondary;
-        padding: 200px;
+        padding: $spacing-lg;
+        border-radius: $border-full;
+        margin-top: $spacing-md;
+
+        color: $black;
+        text-align: center;
+        font-family: $Open-Sans-SemiBold;
+        font-size: $font-lg;
+
+        box-shadow: $shadow-sm;
+
+        transition: $transition;
+        animation: slide-up 0.3s ease;
     }
+
 
     .btn-submit:hover{
         box-shadow: $shadow-md;
@@ -78,8 +96,5 @@ input {
         background-color: $primary;
     }
 }
-
-
-
 
 

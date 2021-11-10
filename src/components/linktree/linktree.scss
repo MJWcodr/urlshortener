@@ -71,7 +71,7 @@ p {
   font-weight: bold; }
 
 .social-logo {
-  width: auto;
+  width: clamp(40px, 25%, 50px);
   stroke-width: 1.75;
   stroke: #2a9d8f;
   min-height: 100%; }
@@ -120,4 +120,8 @@ p {
   bottom: 20px;
   transform: translate(-50%, -50%);
   left: 50%;
+}
+
+.LinkTree {
+  animation: slide-up 0.3s;
 }

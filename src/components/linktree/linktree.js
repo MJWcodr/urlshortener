@@ -9,7 +9,7 @@ import SocialButton from '../SocialsButton/SocialButton';
 function linktree() {
     return (
         <div>
-            <div>
+            <div className="LinkTree">
                 <section>
                     <img src={profilepic} alt="user icon" class="profile-picture" />
                     <div class="profile-name">
