@@ -1,11 +1,57 @@
-@import url('https://data.mjwcodr.de/fonts/opensans/stylesheet.css');
+
+// Open Sans
+// @import url('https://data.mjwcodr.de/fonts/opensans/stylesheet.css');
+// @font-face {
+//     font-family: 'Open Sans ExtraBold';
+//     src: url('https://data.mjwcodr.de/fonts/opensans/opensans-extrabold-webfont.woff2') format('woff2'),
+//          url('https://data.mjwcodr.de/fonts/opensans/opensans-extrabold-webfont.woff') format('woff');
+//     font-weight: normal;
+//     font-style: normal;
+//     font-display: swap;
+// }
+
+// @font-face {
+//     font-family: 'Open Sans Light';
+//     src: url('https://data.mjwcodr.de/fonts/opensans/opensans-light-webfont.woff2') format('woff2'),
+//          url('https://data.mjwcodr.de/fonts/opensans/opensans-light-webfont.woff') format('woff');
+//     font-weight: normal;
+//     font-style: normal;
+//     font-display: swap;
+// }
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('https://data.mjwcodr.de/fonts/opensans/opensans-regular-webfont.woff2') format('woff2'),
+         url('https://data.mjwcodr.de/fonts/opensans/opensans-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sans SemiBold';
+    src: url('https://data.mjwcodr.de/fonts/opensans/opensans-semibold-webfont.woff2') format('woff2'),
+         url('https://data.mjwcodr.de/fonts/opensans/opensans-semibold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sans Bold';
+    src: url('https://data.mjwcodr.de/fonts/opensans/opensans-bold-webfont.woff2') format('woff2'),
+         url('https://data.mjwcodr.de/fonts/opensans/opensans-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 
 // font families
 $Open-Sans : 'Open Sans', 'Helvetica', 'Roboto', sans-serif; 
 $Open-Sans-SemiBold :"Open Sans SemiBold", $Open-Sans;
 $Open-Sans-Bold: "Open Sans Bold", $Open-Sans;
 
-// Open Sans
+
 
 
 // sizes
