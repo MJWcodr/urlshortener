@@ -1,0 +1,43 @@
+// screen-sizes
+$phone: 415px;
+$desktop: 1200px;
+
+// boder-radii
+$border-big: 25px;
+$border-lg: 25px;
+$border-sm: 10px;
+$border-full: 99999px;
+
+// box-shadows old
+// $shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+// $shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+// $shadow-mid: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+// $shadow-lg:  0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+// $shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+// $shadow-xxl:0 25px 50px -12px rgba(0, 0, 0, 0.25);
+// $shadow-3xl:0 35px 60px -15px rgba(0, 0, 0, 0.3);
+
+// new box-shadows
+/* Shadow 2dp */
+/* Shadow 6dp */
+$shadow-sm: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px -1px rgba(0,0,0,0.20);
+/* Shadow 12dp */
+$shadow-md: 0 12px 17px 2px rgba(0,0,0,0.14), 0 5px 22px 4px rgba(0,0,0,0.12), 0 7px 8px -4px rgba(0,0,0,0.20);
+/* Shadow 16dp */
+$shadow-lg: 0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12), 0 8px 10px -5px rgba(0,0,0,0.20);
+/* Shadow 24dp */
+$shadow-xl: 0 24px 38px 3px rgba(0,0,0,0.14), 0 9px 46px 8px rgba(0,0,0,0.12), 0 11px 15px -7px rgba(0,0,0,0.20);
+
+
+
+// spacing 
+$spacing-sm: 5px;
+$spacing-md: 10px;
+$spacing-lg: 15px;
+$spacing-xl: 25px;
+
+// transition
+
+$transition: all 300ms;
+
+$highlight-border: 5px solid $primary;

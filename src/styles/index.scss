@@ -1,0 +1,15 @@
+@import './globals/colors.scss';
+@import './globals/fonts.scss';
+@import './globals/layouts.scss';
+
+.Title-medium {
+    text-align: center;
+    font-family: $Open-Sans-Bold;
+    margin-top: 100px;
+    font-size: $font-title-md;
+}
+
+.Title-medium .light {
+    color: $white;
+}
+

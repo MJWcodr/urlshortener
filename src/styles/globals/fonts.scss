@@ -1,0 +1,40 @@
+@import url('https://data.mjwcodr.de/fonts/opensans/stylesheet.css');
+
+// font families
+$Open-Sans : 'Open Sans', 'Helvetica', 'Roboto', sans-serif; 
+$Open-Sans-SemiBold :"Open Sans SemiBold", $Open-Sans;
+$Open-Sans-Bold: "Open Sans Bold", $Open-Sans;
+
+// Open Sans
+
+
+// sizes
+
+$font-xs : 8px;
+$font-sm : 12px;
+$font-md : 16px;
+$font-lg : 20px;
+$font-xl : 24px;
+$font-xxl : 28px;
+
+$font-title-md: 48px;
+
+.font-xs {
+    font-size: $font-xs;
+}
+.font-sm {
+    font-size: $font-sm;
+}
+.font-md {
+    font-size: $font-md;
+}
+.font-lg {
+    font-size: $font-lg;
+}
+.font-xl {
+    font-size: $font-xl;
+}
+
+
+
+// wheights
