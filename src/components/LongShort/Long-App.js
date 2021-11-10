@@ -5,6 +5,8 @@ import './Long-App.scss';
 // Components
 import LongShort from './LongShort';
 
+import '../linktree/linktree.scss';
+
 // header
 
 function App() {

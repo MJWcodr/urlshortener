@@ -1,20 +1,30 @@
 
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import ReactDOM from 'react-dom';
 import { Route, BrowserRouter as Router } from 'react-router-dom'
 
-const linktree = React.lazy(() => import('./components/linktree/linktree'))
-const LongApp = React.lazy(() => import('./components/LongShort/Long-App'))
+import './styles/index.scss'
 
-// React components
+// import linktree from './components/linktree/linktree';
+
+const LongApp = lazy(() => import('./components/LongShort/Long-App'))
+const linktree = lazy(() => import('./components/linktree/linktree'))
+
+
+
+const fallback = {
+  "body": <body style={{background: "#303030"}}></body>,
+}
 
 // Resources
 
 // Routing
 const routes = (
   <Router basename="/">
-    <Route exact path='/shorturls' component={LongApp} />
-    <Route exact path='/' component={linktree} />
+    <Suspense fallback={fallback.body}>
+      <Route exact path='/shorturls' component={LongApp} />
+      <Route exact path='/' component={linktree} />
+    </Suspense>
   </Router>
 );
 
