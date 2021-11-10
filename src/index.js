@@ -1,10 +1,13 @@
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route, BrowserRouter as Router } from 'react-router-dom'
 
+const linktree = React.lazy(() => import('./components/linktree/linktree'))
+const LongApp = React.lazy(() => import('./components/LongShort/Long-App'))
+
 // React components
-import LongApp from './components/LongShort/Long-App';
-import linktree from './components/linktree/linktree';
+
 // Resources
 
 // Routing
