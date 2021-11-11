@@ -34,7 +34,7 @@ function linktree() {
                 </section>
 
             </div>
-            <div className="end-tag">With ❤️ From Berlin</div>
+            {/* <div className="end-tag">With ❤️ From Berlin</div> */}
 
         </div>
     );

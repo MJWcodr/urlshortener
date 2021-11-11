@@ -1,14 +1,9 @@
-//TODO: RE-ADD import '../../styles/tailwind.css';
-import React from 'react';
 import './Long-App.scss';
-
 // Components
 import LongShort from './LongShort';
-
 import '../linktree/linktree.scss';
 
 // header
-
 function App() {
   return (
     <div>
@@ -26,7 +21,7 @@ function App() {
             </div>
           </a>
         </div>
-        <div className="end-tag">With ❤️ From Berlin</div>
+        {/* <div className="end-tag">With ❤️ From Berlin</div> */}
       </div>
     </div>
   );
