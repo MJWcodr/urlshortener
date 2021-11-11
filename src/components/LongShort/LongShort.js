@@ -135,17 +135,16 @@ class LongShort extends React.Component {
         redirect: 'follow', // manual, *follow, error
         referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
         body: JSON.stringify(data) // body data type must match "Content-Type" header
-
-      });
+          })
+        .then((err) => console.log(err))
+        .then((res) => (console.log(res.body)))
+      ;
     }
-
-
   }
   handleURLChange(event) {
     if (event.target.value !== null) {
       this.setState({ LongURL: event.target.value });
       this.autoShortURL(event.target.value);
-      console.log(event.target.value);
     }
   }
   handleShortURLinput(event) {
@@ -200,7 +199,7 @@ class LongShort extends React.Component {
                 placeholder="hashj5"
                 id="ShortURL"
                 onChange={this.handleShortURLinput}
-                defaultValue={this.state.ShortURL}/>
+                defaultValue={this.state.ShortURL} />
             </div>
           </div>
 
@@ -211,11 +210,8 @@ class LongShort extends React.Component {
           <input
             type="submit"
             value="Submit"
-            id="submit" />
+            id="submit"/>
         </div>
-        <span>
-
-        </span>
       </form>
     )
   }
