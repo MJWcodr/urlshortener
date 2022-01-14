@@ -2,7 +2,7 @@
 const _datadir = './data/'
 const port = process.argv.splice(2)[0] || 3000
 const activeSubdomains = ['link', 'shorturls', '/']
-const Hostname = "https://mjw.li/" // must be in format "https://erxample.com/"
+const Hostname = "https://mjw.li/" // must be in format "https://example.com/"
 
 // Dependencies
 const express = require('express');
@@ -56,7 +56,14 @@ for (i = -1; i++; i > create.length) {
     });
 }
 
+app.get('created', (req, res) => {
+    let sendBody = `
+# API
+example POST Request:
 
+    `
+    res.send()
+})
 // Shorturl Routing and general responses
 app.get('/:id', (req, res) => {
     const id = req.params.id;
@@ -82,32 +89,33 @@ app.get('/:id', (req, res) => {
 });
 
 // Post /created
-app.post('/created', (req, res, next) => {
+app.post('/created', (req, res) => {
     const sql = "INSERT INTO URL_table (LongURL, ShortURL) VALUES (?,?)"
     let ShortURL = req.body.ShortURL
     let LongURL = req.body.LongURL
-
     if (ShortURL == undefined || ShortURL == "") {
         ShortURL = stringToHash(LongURL + Math.random())
     }
-
     let URL = [LongURL, ShortURL]
     db.run(sql, URL, err => {
         if (err) {
             if (err.errno === 19) {
-                res.send("failed to add entry").status(500)
+                res.status(500).send('failed to add entry');
+                // res.send("failed to add entry").status(500)
             }
             else {
-                res.sendStatus(500)
-                return console.log(err)
+                res.status(500).send('an error occured')
             }
         }
         else {
-            res.send(Hostname + ShortURL).status(200)
+            // console.log("error:" + err)
+            // console.log("logpoint reached")
+            res.status(200).send(Hostname + ShortURL)
+
+            // res.send(Hostname + ShortURL).status(200)
         }
     })
 })
-
 
 // Listen
 app.listen(port, () => {
