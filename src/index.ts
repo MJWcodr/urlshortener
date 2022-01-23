@@ -5,7 +5,12 @@ import dotenv from "dotenv"
 import Server from "./Server"
 
 // variables
-const port: number = Number(process.env.PORT) || 5555
+let port: number = Number(process.env.PORT) || 3000
+
+if (process.argv[3] == "--dev"){
+    port = Number(process.env.DEV_PORT) || 5555
+}
+
 // load dotenv 
 dotenv.config()
 
