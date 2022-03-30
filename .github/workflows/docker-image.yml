@@ -15,9 +15,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USER }}/url-shortener:$(date +%s)
+      run: docker build . --file Dockerfile --tag mjwcodr/url-shortener:$(date +%s)
     - name: Login to Docker hub
-      run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_SECRET }}
+      run: docker login -u mjwcodr -p ${{ secrets.DOCKER_SECRET }}
     
     - name: push to docker hub
       run: docker push mjwcodr/url-shortener
