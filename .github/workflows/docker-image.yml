@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USER }} /url-shortener:$(date +%s)
+      run: docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USER }}/url-shortener:$(date +%s)
     - name: Login to Docker hub
       run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_SECRET }}
     
