@@ -112,3 +112,7 @@ dist
 
 # TernJS port file
 .tern-port
+build/index.js
+build/db/Database.js
+build/db/Database.js
+.gitignore
