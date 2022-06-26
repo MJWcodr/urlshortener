@@ -2,10 +2,11 @@
 data/url.db
 
 # builds
-frontend
+build/**/*
+build/*
+
 # start command
 start.sh
-
 
 # Logs
 logs
