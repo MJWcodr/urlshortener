@@ -5,6 +5,7 @@ import Logger from "../logger/Logger";
 import path from 'path'
 import { properURL, urlShort } from "../types/url"
 import { uniqueConstraintError } from "../types/databaseErrors";
+import { tracking } from "../types/tracking";
 
 config()
 const activeSubdomains = ['', 'shorturls']
@@ -18,7 +19,7 @@ const logger = Logger.getInstance()
 
 router.route('/created')
     .post((req, res) => {
-        if (req.body.LongURL as properURL){
+        if (req.body.LongURL as properURL) {
             let newURL: urlShort = {
                 LongURL: req.body.LongURL,
                 ShortURL: req.body.ShortURL
@@ -29,20 +30,20 @@ router.route('/created')
                     "ShortURL": data.ShortURL
                 })
             )
-            .catch(err => {
-                logger.error(String(err))
-                if (err as uniqueConstraintError){
-                    res.send(`${newURL.ShortURL}: ShortURL already in Database`).status(500)
-                } else {
-                    res.send("Internal Server Error").status(500)
-                }
-            })
+                .catch(err => {
+                    logger.error(String(err))
+                    if (err as uniqueConstraintError) {
+                        res.send(`${newURL.ShortURL}: ShortURL already in Database`).status(500)
+                    } else {
+                        res.send("Internal Server Error").status(500)
+                    }
+                })
         }
         else {
             res.send("Misformatted Request").status(500)
         }
 
-        
+
     })
 
 router.route('/:id')
@@ -58,9 +59,22 @@ router.route('/:id')
                     logger.error(`${req.params.id} is not in URL_table`)
                 }
                 if (data) {
+                    if (data.ShortURL) {
+                        let logPoint: tracking.Point = {
+                            ShortURL: data.ShortURL,
+                            ip: req.ip,
+                            origin: req.headers.origin,
+                            xhr: req.xhr,
+                            browser: req.useragent?.browser,
+                            version: req.useragent?.version,
+                            source: req.useragent?.source,
+                            platform: req.useragent?.platform
+                        }
+                        db.addLogPoint(logPoint)
+                        res.redirect(data.LongURL)
+                    }
                     // and redirect
-                    res.redirect(data.LongURL)
-                } 
+                }
             })
         }
     })

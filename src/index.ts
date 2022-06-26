@@ -7,7 +7,7 @@ import Server from "./Server"
 // variables
 let port: number = Number(process.env.PORT) || 3000
 
-if (process.argv[3] == "--dev"){
+if (process.argv[2] == "--dev"){
     port = Number(process.env.DEV_PORT) || 5555
 }
 

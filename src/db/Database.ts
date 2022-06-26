@@ -3,11 +3,13 @@ import Logger from "../logger/Logger"
 import sqlite3 from "sqlite3"
 import stringToHash from "../utils/stringToHash"
 import { urlShort } from "../types/url"
-
 import { uniqueConstraintError } from "../types/databaseErrors"
+import { tracking } from "../types/tracking"
+import { sqlQueries } from "./sqlQueries"
 
-const _datadir: string = "./data/"
-const db_name = _datadir + "url.db"
+// Params
+const datadir: string = "./data/"
+const db_name = datadir + "url.db"
 const logger = Logger.getInstance()
 
 export default class Database {
@@ -24,18 +26,19 @@ export default class Database {
         })
         this.checkDBexists();
     }
+
     /**
      * createFile
      */
     private createFile(): void {
         try {
-            if (!fs.existsSync(_datadir)) {
-                fs.mkdirSync(_datadir)
+            if (!fs.existsSync(datadir)) {
+                fs.mkdirSync(datadir)
                 logger.info("Created File for Database")
             }
 
         } catch (error) {
-            logger.error(`unable to create directory: ${_datadir}`)
+            logger.error(`unable to create directory: ${datadir}`)
         }
     }
     /**
@@ -53,10 +56,7 @@ export default class Database {
      * 
      */
     private checkDBexists(): void {
-        const createCommand = [`CREATE TABLE IF NOT EXISTS URL_table (
-            URL_ID INTEGER PRIMARY KEY AUTOINCREMENT,
-            LongURL VARCHAR NOT NULL,
-            ShortURL VARCHAR NOT NULL UNIQUE);`]
+        const createCommand = sqlQueries.create
 
         createCommand.forEach(element => {
             this.db.exec(element, (err) => {
@@ -117,5 +117,61 @@ export default class Database {
 
         })
     }
+    /**
+     * addLogPoint
+     * @param tracking 
+     */
+    async addLogPoint(tracking: tracking.Point): Promise<string> {
+        let trackArray = [
+            tracking.ShortURL,
+            tracking.ip,
+            tracking.xhr,
+            tracking.browser,
+            tracking.origin,
+            tracking.source,
+            tracking.version
+        ]
+        return new Promise<string>((_resolve, reject) => {
+            this.db.run(sqlQueries.logPointAdd, trackArray, (err) => {
+                if (err) {
+                    reject(err)
+                } else {
+                    logger.info(`Added Logpoint for ${tracking.ShortURL}`)
+                }
+            })
+        })
+    }
 
+    /**
+     * 
+     * @param value ShortUrl to get Number of Accesses for
+     * @returns tracking.stats Object
+     */
+    getAccessNumber(value: string) {
+        return new Promise<number>((resolve, reject) => {
+            this.db.get(sqlQueries.getNumberOfAcceses, value, (err: any, data: any) => {
+                if (err) {
+                    logger.error("An Error occured while trying to get Number of Accesses")
+                    reject(err)
+                }
+                
+                resolve(data.NumberOfAccesses as number)
+            })
+        })
+    }
+    getAccessStats = async (ShortUrl: string) => {
+        let AccessNumber = await this.getAccessNumber(ShortUrl);
+
+        let out: tracking.Stats = {
+            numberOfAccesses: AccessNumber
+        }
+        return out
+    }
 }
+
+
+const testDb = Database.getInstance()
+
+testDb.getAccessNumber("8sdc0p")
+    .then(data => console.log(data))
+    .catch(err => console.log(err))

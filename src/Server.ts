@@ -2,6 +2,7 @@ import express from "express"
 import Logger from "./logger/Logger";
 import { Express } from "express"
 import api from "./routes/api";
+import useragent from "express-useragent"
 
 const dataDir = "/frontend/build/"
 const errorDir = "/public/errors/"
@@ -14,6 +15,7 @@ export default class Server {
         this.app = app;
 
         // middleware
+        app.use(useragent.express())
         app.use(express.static(process.cwd() + dataDir))
         app.use(express.static(process.cwd() + errorDir))
 
