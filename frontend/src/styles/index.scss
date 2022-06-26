@@ -1,0 +1,30 @@
+@import './globals/colors.scss';
+@import './globals/fonts.scss';
+@import './globals/layouts.scss';
+@import './globals/animations.scss';
+
+
+body {
+    background: #303030;
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    letter-spacing: 1px; 
+    }
+  
+  img {
+    border-radius: 50%; }
+  
+  section {
+    margin-top: 30px;
+  }
+  
+  a {
+    text-decoration: none;
+    color: white; 
+  }
+  
+  p {
+    margin: 0px;
+  }
+  
